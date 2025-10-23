@@ -20,9 +20,11 @@ import {
   Login
 } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../hooks/useAuth';
 
 const SignIn: React.FC = () => {
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -73,22 +75,16 @@ const SignIn: React.FC = () => {
     setIsLoading(true);
     
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const result = await login(formData.email, formData.password);
       
-      // Mock authentication - in real app, this would call your auth service
-      // For demo purposes, simulate successful login
-      localStorage.setItem('user', JSON.stringify({
-        email: formData.email,
-        name: formData.email.split('@')[0],
-        loginTime: new Date().toISOString()
-      }));
-      
-      // Navigate to dashboard
-      navigate('/');
-      
+      if (result.success) {
+        // Navigate to dashboard on successful login
+        navigate('/');
+      } else {
+        setErrors({ submit: result.error || 'Login failed. Please try again.' });
+      }
     } catch (error) {
-      setErrors({ submit: 'Invalid email or password. Please try again.' });
+      setErrors({ submit: 'Login failed. Please try again.' });
     } finally {
       setIsLoading(false);
     }

@@ -28,9 +28,11 @@ import {
   School
 } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../hooks/useAuth';
 
 const SignUp: React.FC = () => {
   const navigate = useNavigate();
+  const { register } = useAuth();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -137,22 +139,15 @@ const SignUp: React.FC = () => {
     setIsLoading(true);
     
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      const fullName = `${formData.firstName} ${formData.lastName}`;
+      const result = await register(formData.email, formData.password, fullName);
       
-      // Mock registration - in real app, this would call your auth service
-      // For demo purposes, simulate successful registration
-      localStorage.setItem('user', JSON.stringify({
-        email: formData.email,
-        name: `${formData.firstName} ${formData.lastName}`,
-        studentLevel: formData.studentLevel,
-        institution: formData.institution,
-        registrationTime: new Date().toISOString()
-      }));
-      
-      // Navigate to dashboard
-      navigate('/');
-      
+      if (result.success) {
+        // Navigate to dashboard on successful registration
+        navigate('/');
+      } else {
+        setErrors({ submit: result.error || 'Registration failed. Please try again.' });
+      }
     } catch (error) {
       setErrors({ submit: 'Registration failed. Please try again.' });
     } finally {
