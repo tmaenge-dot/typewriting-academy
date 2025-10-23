@@ -197,13 +197,13 @@ const SignIn: React.FC = () => {
 
             <Box sx={{ mt: 4, p: 2, bgcolor: 'grey.50', borderRadius: 1 }}>
               <Typography variant="caption" color="text.secondary" display="block" gutterBottom>
-                📚 Demo Credentials (for testing):
+                📚 Demo Access - Use your email with any of these passwords:
               </Typography>
               <Typography variant="caption" color="text.secondary" display="block">
-                Email: student@example.com
+                Passwords: password123, demo123, 123456, or password
               </Typography>
-              <Typography variant="caption" color="text.secondary" display="block">
-                Password: password123
+              <Typography variant="caption" color="text.secondary" display="block" sx={{ mt: 1 }}>
+                Example: your-email@domain.com / password123
               </Typography>
             </Box>
           </Box>

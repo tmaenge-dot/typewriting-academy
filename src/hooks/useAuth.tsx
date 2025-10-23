@@ -104,7 +104,28 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         return { success: true };
       }
 
-      return { success: false, error: 'Invalid email or password' };
+      // Demo mode: Accept any valid email with common passwords
+      const demoPasswords = ['password123', 'demo123', '123456', 'password'];
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      
+      if (emailRegex.test(email) && demoPasswords.includes(password)) {
+        const demoUser: User = {
+          id: 'demo-' + Date.now(),
+          email: email,
+          name: email.split('@')[0].replace(/[^a-zA-Z]/g, ' '),
+          role: 'user',
+          createdAt: new Date().toISOString(),
+          isVerified: true
+        };
+
+        setUser(demoUser);
+        localStorage.setItem('user', JSON.stringify(demoUser));
+        localStorage.setItem('authToken', 'demo-token-' + Date.now());
+        
+        return { success: true };
+      }
+
+      return { success: false, error: 'Invalid email or password. Try: password123, demo123, 123456, or password' };
     } catch (error) {
       return { success: false, error: 'Login failed. Please try again.' };
     }
