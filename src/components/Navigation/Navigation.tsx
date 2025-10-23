@@ -1,4 +1,4 @@
-import { useState, memo } from 'react';
+import { useState } from 'react';
 import {
   AppBar,
   Toolbar,
@@ -285,4 +285,4 @@ const Navigation = () => {
   );
 };
 
-export default memo(Navigation);
+export default Navigation;

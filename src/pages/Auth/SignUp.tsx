@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Container,
   TextField,
@@ -32,7 +32,14 @@ import { useAuth } from '../../hooks/useAuth';
 
 const SignUp: React.FC = () => {
   const navigate = useNavigate();
-  const { register } = useAuth();
+  const { register, isAuthenticated } = useAuth();
+
+  // Redirect if already authenticated
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/', { replace: true });
+    }
+  }, [isAuthenticated, navigate]);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -143,8 +150,12 @@ const SignUp: React.FC = () => {
       const result = await register(formData.email, formData.password, fullName);
       
       if (result.success) {
+        // Store success message in sessionStorage for display on dashboard
+        sessionStorage.setItem('loginSuccess', 'true');
+        sessionStorage.setItem('loginMessage', `Account created successfully! Welcome to the platform.`);
+        
         // Navigate to dashboard on successful registration
-        navigate('/');
+        navigate('/', { replace: true });
       } else {
         setErrors({ submit: result.error || 'Registration failed. Please try again.' });
       }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Container,
   TextField,
@@ -24,7 +24,7 @@ import { useAuth } from '../../hooks/useAuth';
 
 const SignIn: React.FC = () => {
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { login, isAuthenticated } = useAuth();
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -32,6 +32,13 @@ const SignIn: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState<{[key: string]: string}>({});
   const [isLoading, setIsLoading] = useState(false);
+
+  // Redirect if already authenticated
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/', { replace: true });
+    }
+  }, [isAuthenticated, navigate]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -78,8 +85,12 @@ const SignIn: React.FC = () => {
       const result = await login(formData.email, formData.password);
       
       if (result.success) {
+        // Store success message in sessionStorage for display on dashboard
+        sessionStorage.setItem('loginSuccess', 'true');
+        sessionStorage.setItem('loginMessage', `Welcome back! You're now signed in.`);
+        
         // Navigate to dashboard on successful login
-        navigate('/');
+        navigate('/', { replace: true });
       } else {
         setErrors({ submit: result.error || 'Login failed. Please try again.' });
       }

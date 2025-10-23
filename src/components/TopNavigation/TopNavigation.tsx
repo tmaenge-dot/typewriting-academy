@@ -31,7 +31,7 @@ import { useAuth } from '../../hooks/useAuth';
 const TopNavigation: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { user, isAdmin, isLocalhost, logout } = useAuth();
+  const { user, isAdmin, isLocalhost, isAuthenticated, logout } = useAuth();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
@@ -110,12 +110,12 @@ const TopNavigation: React.FC = () => {
         )}
 
         {/* User Authentication Section */}
-        {(user || isLocalhost) ? (
-          // Logged in user
+        {isAuthenticated ? (
+          // Authenticated user - show profile and logout options
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mr: 2 }}>
               <Typography variant="body2" sx={{ display: { xs: 'none', sm: 'block' } }}>
-                Welcome, {user?.name || 'Developer'}
+                Welcome, {user?.name || 'User'}
               </Typography>
               {(isAdmin || isLocalhost) && (
                 <Chip 
@@ -169,10 +169,10 @@ const TopNavigation: React.FC = () => {
                 </ListItemIcon>
                 <ListItemText>
                   <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
-                    {user?.name || 'Developer'}
+                    {user?.name || 'User'}
                   </Typography>
                   <Typography variant="caption" color="text.secondary">
-                    {user?.email || 'localhost'}
+                    {user?.email || 'No email'}
                   </Typography>
                 </ListItemText>
               </MenuItem>
@@ -204,7 +204,7 @@ const TopNavigation: React.FC = () => {
             </Menu>
           </Box>
         ) : (
-          // Not logged in
+          // Not authenticated - show sign in/up buttons (only when not on auth pages)
           !isAuthPage && (
             <Box sx={{ display: 'flex', gap: 1 }}>
               <Button 
