@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typewriting Academy - Professional Typing Training</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎓 Typewriting Academy</h1>
+            <p class="subtitle">Professional Typewriting & Information Processing Training Platform</p>
+        </header>
+
+        <main>
+            <!-- Lesson Selection -->
+            <section class="lesson-selector" id="lessonSelector">
+                <h2>Select Your Lesson</h2>
+                <div class="lesson-grid">
+                    <button class="lesson-btn" data-level="beginner">
+                        <span class="level-icon">🌱</span>
+                        <span class="level-name">Beginner</span>
+                        <span class="level-desc">Basic letters and simple words</span>
+                    </button>
+                    <button class="lesson-btn" data-level="intermediate">
+                        <span class="level-icon">📚</span>
+                        <span class="level-name">Intermediate</span>
+                        <span class="level-desc">Sentences and punctuation</span>
+                    </button>
+                    <button class="lesson-btn" data-level="advanced">
+                        <span class="level-icon">🎯</span>
+                        <span class="level-name">Advanced</span>
+                        <span class="level-desc">Complex paragraphs and numbers</span>
+                    </button>
+                    <button class="lesson-btn" data-level="professional">
+                        <span class="level-icon">💼</span>
+                        <span class="level-name">Professional</span>
+                        <span class="level-desc">Business documents and technical content</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Typing Test Area -->
+            <section class="typing-test hidden" id="typingTest">
+                <div class="stats-bar">
+                    <div class="stat">
+                        <span class="stat-label">Time</span>
+                        <span class="stat-value" id="timer">0:00</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">WPM</span>
+                        <span class="stat-value" id="wpm">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Accuracy</span>
+                        <span class="stat-value" id="accuracy">100%</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Level</span>
+                        <span class="stat-value" id="currentLevel">-</span>
+                    </div>
+                </div>
+
+                <div class="text-display" id="textDisplay"></div>
+
+                <div class="input-area">
+                    <textarea 
+                        id="typingInput" 
+                        placeholder="Start typing here..."
+                        autocomplete="off"
+                        autocorrect="off"
+                        autocapitalize="off"
+                        spellcheck="false"
+                    ></textarea>
+                </div>
+
+                <div class="controls">
+                    <button class="btn btn-secondary" id="restartBtn">Restart</button>
+                    <button class="btn btn-secondary" id="changeLessonBtn">Change Lesson</button>
+                </div>
+            </section>
+
+            <!-- Results Screen -->
+            <section class="results hidden" id="results">
+                <div class="results-card">
+                    <h2>🎉 Test Complete!</h2>
+                    <div class="results-grid">
+                        <div class="result-item">
+                            <div class="result-label">Words Per Minute</div>
+                            <div class="result-value large" id="finalWpm">0</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-label">Accuracy</div>
+                            <div class="result-value" id="finalAccuracy">0%</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-label">Time Taken</div>
+                            <div class="result-value" id="finalTime">0:00</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-label">Characters Typed</div>
+                            <div class="result-value" id="finalChars">0</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-label">Errors</div>
+                            <div class="result-value" id="finalErrors">0</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-label">Level</div>
+                            <div class="result-value" id="finalLevel">-</div>
+                        </div>
+                    </div>
+                    <div class="performance-message" id="performanceMessage"></div>
+                    <div class="results-actions">
+                        <button class="btn btn-primary" id="tryAgainBtn">Try Again</button>
+                        <button class="btn btn-secondary" id="newLessonBtn">Choose New Lesson</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Typewriting Academy. Improve your typing skills professionally.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
