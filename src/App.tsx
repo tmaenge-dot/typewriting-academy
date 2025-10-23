@@ -5,7 +5,7 @@ import { Box } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
 import { AuthProvider } from './hooks/useAuth';
 import { SubscriptionProvider } from './hooks/useSubscription';
-import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
+// import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'; // Not needed for main routes
 
 // Import critical components immediately (no lazy loading for better UX)
 import TopNavigation from './components/TopNavigation/TopNavigation';
@@ -86,16 +86,16 @@ function App() {
                   position: 'relative'
                 }}>
                   <Routes>
-                    <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-                    <Route path="/typing-practice" element={<ProtectedRoute><TypingPractice /></ProtectedRoute>} />
-                    <Route path="/speed-development" element={<ProtectedRoute><SpeedDevelopment /></ProtectedRoute>} />
-                    <Route path="/assessment" element={<ProtectedRoute><Assessment /></ProtectedRoute>} />
-                    <Route path="/progress" element={<ProtectedRoute><Progress /></ProtectedRoute>} />
-                    <Route path="/business-documents" element={<ProtectedRoute><BusinessDocuments /></ProtectedRoute>} />
-                    <Route path="/ai-assistant" element={<ProtectedRoute><AIAssistant /></ProtectedRoute>} />
-                    <Route path="/exam-practice" element={<ProtectedRoute><ExamPractice /></ProtectedRoute>} />
-                    <Route path="/enhanced-exam-practice" element={<ProtectedRoute><EnhancedExamPractice /></ProtectedRoute>} />
-                    <Route path="/pricing" element={<ProtectedRoute><Pricing /></ProtectedRoute>} />
+                    <Route path="/" element={<Dashboard />} />
+                    <Route path="/typing-practice" element={<TypingPractice />} />
+                    <Route path="/speed-development" element={<SpeedDevelopment />} />
+                    <Route path="/assessment" element={<Assessment />} />
+                    <Route path="/progress" element={<Progress />} />
+                    <Route path="/business-documents" element={<BusinessDocuments />} />
+                    <Route path="/ai-assistant" element={<AIAssistant />} />
+                    <Route path="/exam-practice" element={<ExamPractice />} />
+                    <Route path="/enhanced-exam-practice" element={<EnhancedExamPractice />} />
+                    <Route path="/pricing" element={<Pricing />} />
                     <Route path="/sign-in" element={<SignIn />} />
                     <Route path="/sign-up" element={<SignUp />} />
                   </Routes>
