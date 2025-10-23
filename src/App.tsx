@@ -14,6 +14,7 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import TypingPractice from './pages/TypingPractice/TypingPractice';
 import SpeedDevelopment from './pages/SpeedDevelopment/SpeedDevelopment';
 import Assessment from './pages/Assessment/Assessment';
+import Pricing from './pages/Pricing/Pricing';
 
 // Only lazy load heavy/less frequently used components
 const Progress = React.lazy(() => import('./pages/Progress/Progress'));
@@ -21,7 +22,6 @@ const BusinessDocuments = React.lazy(() => import('./pages/BusinessDocuments/Bus
 const AIAssistant = React.lazy(() => import('./pages/AIAssistant/AIAssistant'));
 const ExamPractice = React.lazy(() => import('./pages/ExamPractice/ExamPractice'));
 const EnhancedExamPractice = React.lazy(() => import('./pages/ExamPractice/EnhancedExamPractice'));
-const Pricing = React.lazy(() => import('./pages/Pricing/Pricing'));
 const SignIn = React.lazy(() => import('./pages/Auth/SignIn'));
 const SignUp = React.lazy(() => import('./pages/Auth/SignUp'));
 
