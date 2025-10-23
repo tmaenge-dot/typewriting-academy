@@ -7,12 +7,10 @@
   
   # Build output directory
   publish = "dist"
-  
-  # Node.js version
-  environment = { NODE_VERSION = "18" }
 
 [build.environment]
-  # Production environment variables
+  # Node.js version and production environment variables
+  NODE_VERSION = "18"
   NODE_ENV = "production"
   GENERATE_SOURCEMAP = "false"
 
