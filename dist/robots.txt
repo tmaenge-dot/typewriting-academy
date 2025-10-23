@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://typewriting-academy.com/sitemap.xml
+Sitemap: https://information-processing-typewriting.netlify.app/sitemap.xml
 
 # Crawl delay (optional - helps with server load)
 Crawl-delay: 1
